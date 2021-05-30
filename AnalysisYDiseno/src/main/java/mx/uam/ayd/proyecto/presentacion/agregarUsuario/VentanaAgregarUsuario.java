@@ -7,13 +7,21 @@ import javax.swing.border.EmptyBorder;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
+import java.util.Scanner;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 
@@ -25,6 +33,7 @@ public class VentanaAgregarUsuario extends JFrame {
 
 	private JPanel contentPane;
 	private ControlAgregarUsuario control;
+	
 	private JTextField textFieldNombre;
 	private JTextField textFieldApellido;
 	private JComboBox <String> comboBoxGrupo;
@@ -108,7 +117,34 @@ public class VentanaAgregarUsuario extends JFrame {
 				if(textFieldNombre.getText().equals("") || textFieldApellido.getText().equals("")) {
 					muestraDialogoConMensaje("El nombre y el apellido no deben estar vacios");
 				} else {
-					control.agregaUsuario(textFieldNombre.getText(), textFieldApellido.getText(), (String) comboBoxGrupo.getSelectedItem());
+					
+					URL url;
+		    		url=null;
+		    		HttpURLConnection con;
+		    		ObjectMapper objectMapper = new ObjectMapper();
+					try {
+						url = new URL("http://localhost:8080/v1/usuarios");
+					} catch (MalformedURLException e1) {
+						
+						e1.printStackTrace();
+					}
+		            try {
+						con = (HttpURLConnection) url.openConnection();
+						
+						con.setRequestMethod("POST");
+						
+					    
+					   
+					    
+					    //List <Usuario> usuarios = objectMapper.readValue(response,new TypeReference<List<Usuario>>(){});
+					    
+					    //log.info(usuarios.get(0).getNombre());
+					} catch (IOException e1) {
+						
+						e1.printStackTrace();
+					}
+					
+					//control.agregaUsuario(textFieldNombre.getText(), textFieldApellido.getText(), (String) comboBoxGrupo.getSelectedItem());
 				}
 			}
 		});

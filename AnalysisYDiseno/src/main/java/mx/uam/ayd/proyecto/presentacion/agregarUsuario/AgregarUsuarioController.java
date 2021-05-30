@@ -58,23 +58,19 @@ public class AgregarUsuarioController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "/agregarUsuario", method = RequestMethod.POST)
-    public String postAgregarUsuario(
-    		@RequestParam(value="nombre", required=true) String nombre, 
-    		@RequestParam(value="apellido", required=true) String apellido,
-    		@RequestParam(value="grupo", required=true) String grupo,
-    		Model model) {
+	//@RequestMapping(value = "/agregarUsuario", method = RequestMethod.POST)
+    public String postAgregarUsuario(String nombre,String apellido,String grupo, Model model) {
     	
     		System.out.println("Agregando usuario "+nombre+" "+apellido+" "+grupo);
     		
     		try {
     			
     			// Invocación al servicio
-    			Usuario usuario = servicioUsuario.agregaUsuario(nombre, apellido, grupo);
+    			//Usuario usuario = servicioUsuario.agregaUsuario(nombre, apellido, grupo);
     			
     			
     			// Agregamos el usuario al modelo que se le pasa a la vista
-    			model.addAttribute("usuario", usuario);
+    			//model.addAttribute("usuario", usuario);
     			
     			
     			// Redirigimos a la vista de éxito

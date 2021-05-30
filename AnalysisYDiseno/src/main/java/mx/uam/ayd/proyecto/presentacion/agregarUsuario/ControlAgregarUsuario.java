@@ -44,7 +44,7 @@ public class ControlAgregarUsuario {
 	public void agregaUsuario(String nombre, String apellido, String grupo) {
 
 		try {
-			servicioUsuario.agregaUsuario(nombre, apellido, grupo);
+			//servicioUsuario.agregaUsuario(nombre, apellido, grupo);
 			ventana.muestraDialogoConMensaje("Usuario agregado exitosamente");
 		} catch(Exception ex) {
 			ventana.muestraDialogoConMensaje("Error al agregar usuario: "+ex.getMessage());

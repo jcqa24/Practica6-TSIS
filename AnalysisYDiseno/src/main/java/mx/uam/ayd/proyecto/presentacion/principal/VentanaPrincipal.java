@@ -63,7 +63,7 @@ public class VentanaPrincipal extends JFrame {
 		JButton btnListarUsuarios = new JButton("Listar usuarios");
 		btnListarUsuarios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				control.listarUsuarios();
+				//control.listarUsuarios();
 			}
 		});
 		

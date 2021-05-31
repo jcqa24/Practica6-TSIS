@@ -2,27 +2,56 @@
 <html>
 <head>
     <title>Tutorial Spring boot</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
     <link th:href="@{/css/style.css}" rel="stylesheet" />
     
 </head>
 <body>
 <div id="container">
     <h1>Agregando usuario</h1>
-    <form action="agregarUsuario" method="post">
+    <form>
 	    <label for="nombre">Nombre:</label>
-	    <input type = "text" name = "nombre"><br>
+	    <input type = "text" id = "nombre"><br>
 	    <label for="apellido">Apellido:</label>
-	    <input type = "text" name = "apellido"><br>
+	    <input type = "text" id = "apellido"><br>
 	    <label for="grupo">Grupo:</label>
-	    
-	    <select name="grupo">
-	    	<option th:each="grupo :${grupos}" 
-	    	th:value="${grupo.nombre}" 
-	    	th:text="${grupo.nombre}"/>
+	    <select id="grupo">
+	    	<option value="1">Administradores</option>
+	    	<option value="2">Operadores</option>
 	    </select>
-	    <input type="submit" value="Aceptar">
+	    <button onclick="Agregar()"> Agregar </button>
 	</form>
 	</div>
  </body>
+
+ <script>
+    function Agregar(){
+
+        Cnombre =  document.getElementById("nombre").value;
+        Capellido =  document.getElementById("apellido").value;
+        Cgrupo =  document.getElementById("grupo").value;
+
+        var usuario = {
+            nombre: Cnombre,
+            apellido: Capellido,
+            edad: 0,
+            grupo: Cgrupo
+
+        }
+
+
+
+        const Http = new XMLHttpRequest();
+     	const url = "http://localhost:8080/v1/usuarios/";
+     	Http.open("POST", url);
+        Http.send(JSON.stringify(usuario));
+
+        if (Http.status == 201){
+            alert("usuario agregado con exito")
+        }
+        else{
+            alert("error al agregar usuario" + Http.responseText)
+        }
+    }
+ </script>
 </html>

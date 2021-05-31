@@ -57,38 +57,6 @@ public class ListarUsuariosController {
     			model.addAttribute("usuario", usuarios.get(i));
     		}*/
     		
-    		
-    		
-    		// Redirige a esta vista
-    		URL url = null;
-    		try {
-				url = new URL("http://localhost:8080/v1/usuarios/");
-				HttpURLConnection con = (HttpURLConnection) url.openConnection();
-				con.setRequestMethod("GET");
-				BufferedReader in = new BufferedReader(
-						  new InputStreamReader(con.getInputStream()));
-						String inputLine;
-						StringBuffer content = new StringBuffer();
-						while ((inputLine = in.readLine()) != null) {
-						    content.append(inputLine);
-						}
-						in.close();
-						
-						log.info(content.toString());
-				
-			} catch (MalformedURLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-    		
-    	
-			
-           
-            
-    		
     		return "vistaListarUsuarios/ListarUsuarios";
     }
 	

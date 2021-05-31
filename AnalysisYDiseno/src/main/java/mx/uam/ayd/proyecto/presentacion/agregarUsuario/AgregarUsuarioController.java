@@ -14,6 +14,7 @@ import mx.uam.ayd.proyecto.negocio.ServicioGrupo;
 import mx.uam.ayd.proyecto.negocio.ServicioUsuario;
 import mx.uam.ayd.proyecto.negocio.modelo.Grupo;
 import mx.uam.ayd.proyecto.negocio.modelo.Usuario;
+import mx.uam.ayd.proyecto.servicios.UsuarioRestController;
 
 
 @Controller
@@ -21,9 +22,7 @@ import mx.uam.ayd.proyecto.negocio.modelo.Usuario;
 public class AgregarUsuarioController {
 	
 	@Autowired
-	private ServicioUsuario servicioUsuario;
-	@Autowired
-	private ServicioGrupo servicioGrupo;
+	private UsuarioRestController URC;
 
 	/**
 	 * 
@@ -35,13 +34,6 @@ public class AgregarUsuarioController {
 	@RequestMapping(value = "/agregarUsuario", method = RequestMethod.GET)
     public String getAgregarUsuario(Model model) {
     	
-    		log.info("Iniciando Historia de usuario: Agrega usuario");
-        
-    		// Redirige a esta vista
-    		
-    		
-    		List <Grupo> grupos = servicioGrupo.recuperaGrupos();
-    		model.addAttribute("grupos",grupos);
     		
     		
     		return "vistaAgregarUsuario/FormaAgregarUsuario";
@@ -57,7 +49,7 @@ public class AgregarUsuarioController {
 	 * @param grupo
 	 * @param model
 	 * @return
-	 */
+	 
 	//@RequestMapping(value = "/agregarUsuario", method = RequestMethod.POST)
     public String postAgregarUsuario(String nombre,String apellido,String grupo, Model model) {
     	
@@ -83,10 +75,10 @@ public class AgregarUsuarioController {
     			
     			// Redirigimos a la vista de error
     			return "vistaAgregarUsuario/AgregarUsuarioError";
-    		}
+    		}}
 
-    	       
+    	       */
         	
-    }
+    
 
 }

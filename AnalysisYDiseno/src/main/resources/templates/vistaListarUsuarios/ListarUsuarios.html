@@ -5,26 +5,41 @@
     <title>Tutorial Spring boot</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link th:href="@{/css/style.css}" rel="stylesheet" />
-    
+
 </head>
 <body>
+
+     <script>
+        const Http = new XMLHttpRequest();
+     	const url = "http://localhost:8080/v1/usuarios/"
+     	Http.open("GET", url);
+        Http.send();
+
+        Http.onreadystatechange = (e) => {
+        rest =JSON.parse(Http.responseText);
+                    out = " <table><thead ><tr><th>Nombre</th><th>Apellido</th></tr></thead><tbody>";
+
+                for (i = 0; i < rest.length; i++) {
+                    out += "<tr><td>" +
+                    rest[i].nombre +
+                    "</td><td>" +
+                    rest[i].apellido +
+                    "</td></tr>";
+            }
+            out += "</tr></tbody></table>"
+            document.getElementById("id01").innerHTML = out;
+        }
+
+     </script>
+
+
 <div id="container">
     <h1>Lista de usuarios</h1>
 
-	<table>
-		<thead >
-		<tr>
-			<th>Nombre</th>
-			<th>Apellido</th>
-		</tr>
-		</thead>
-		<tbody>
-		<tr th:each="user: ${usuarios}">
-			<td th:text="${user.nombre}"></td>
-			<td th:text="${user.apellido}"></td>
-		</tr>
-		</tbody>
-	</table>
+
+<div id="id01"></div>
+
      </div>
+
  </body>
 </html>

@@ -44,14 +44,9 @@
         const Http = new XMLHttpRequest();
      	const url = "http://localhost:8080/v1/usuarios/";
      	Http.open("POST", url);
+     	Http.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
         Http.send(JSON.stringify(usuario));
 
-        if (Http.status == 201){
-            alert("usuario agregado con exito")
-        }
-        else{
-            alert("error al agregar usuario" + Http.responseText)
-        }
     }
  </script>
 </html>

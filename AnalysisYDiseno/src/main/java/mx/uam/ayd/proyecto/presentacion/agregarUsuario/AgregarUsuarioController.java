@@ -22,8 +22,7 @@ import mx.uam.ayd.proyecto.servicios.UsuarioRestController;
 public class AgregarUsuarioController {
 	
 	@Autowired
-	private UsuarioRestController URC;
-
+	private ServicioGrupo servicioGrupo;
 	/**
 	 * 
 	 * Método invocado cuando se hace una petición GET a la ruta
@@ -34,7 +33,8 @@ public class AgregarUsuarioController {
 	@RequestMapping(value = "/agregarUsuario", method = RequestMethod.GET)
     public String getAgregarUsuario(Model model) {
     	
-    		
+		List <Grupo> grupos = servicioGrupo.recuperaGrupos();
+		model.addAttribute("grupos",grupos);
     		
     		return "vistaAgregarUsuario/FormaAgregarUsuario";
     	
